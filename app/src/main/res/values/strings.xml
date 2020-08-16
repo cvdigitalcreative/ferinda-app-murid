@@ -16,4 +16,6 @@
     <string name="semester_2">Semester 2</string>
     <string name="icon_chevron_right">Icon Chevron Right</string>
     <string name="agenda_semester_ini">Agenda semester ini</string>
+    <string name="teman_sekelas">Teman Sekelas</string>
+    <string name="wali_kelas">Wali Kelas</string>
 </resources>
