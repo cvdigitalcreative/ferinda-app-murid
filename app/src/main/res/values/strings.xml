@@ -12,4 +12,7 @@
     <string name="tugas_yang_ada">Tugas yang ada</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="semester_1">Semester 1</string>
+    <string name="semester_2">Semester 2</string>
+    <string name="icon_chevron_right">Icon Chevron Right</string>
 </resources>
