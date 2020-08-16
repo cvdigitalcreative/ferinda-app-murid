@@ -25,7 +25,7 @@
         android:id="@+id/tv_raport_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="12dp"
         android:fontFamily="@font/roboto_bold"
         android:textColor="@android:color/black"
         android:textSize="10sp"
