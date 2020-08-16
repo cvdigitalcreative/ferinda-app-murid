@@ -5,7 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.digitalcreative.appmurid.R
+import com.digitalcreative.appmurid.adapter.RaportAdapter
+import com.digitalcreative.appmurid.data.entity.Raport
+import kotlinx.android.synthetic.main.fragment_semester.*
 
 
 class SemesterFragment : Fragment() {
@@ -23,4 +27,51 @@ class SemesterFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_semester, container, false)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        val listRaport = listOf(
+            Raport(
+                "Bidang Pengembangan Nilai-Nilai Agama dan Moral",
+                listOf(
+                    Raport.Item(
+                        "1. Menyayikan lagu indonesia raya",
+                        "BM"
+                    ),
+                    Raport.Item(
+                        "2. Menyayikan lagu USSR",
+                        "BSB"
+                    )
+                ),
+                null
+            ),
+            Raport(
+                "Bidang Pengembangan Nilai-Nilai Agama dan Moral",
+                listOf(
+                    Raport.Item(
+                        "1. Menyayikan lagu indonesia raya",
+                        "BM"
+                    ),
+                    Raport.Item(
+                        "2. Menyayikan lagu USSR",
+                        "BSB"
+                    )
+                ),
+                null
+            ),
+            Raport(
+                "Bidang Pengembangan Nilai-Nilai Agama dan Moral",
+                null,
+                "Alhamdulillah ananda difa sudah dapat berhitung 1 - 20 dan sudah dapat mengucapkan abjad a - f"
+            )
+        )
+        val raportAdapter = RaportAdapter()
+        raportAdapter.raports = listRaport
+
+        rv_raport.apply {
+            adapter = raportAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+        }
+    }
 }

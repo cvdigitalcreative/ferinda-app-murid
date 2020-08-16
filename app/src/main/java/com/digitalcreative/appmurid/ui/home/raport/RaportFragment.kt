@@ -23,7 +23,12 @@ class RaportFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         view_pager.adapter = ViewPagerAdapter(requireActivity())
-        TabLayoutMediator(tab_layout, view_pager) { _, _ -> }.attach()
+        TabLayoutMediator(tab_layout, view_pager) { tab, position ->
+            tab.text = getString(
+                if (position == 0) R.string.semester_1
+                else R.string.semester_2
+            )
+        }.attach()
     }
 
 }
