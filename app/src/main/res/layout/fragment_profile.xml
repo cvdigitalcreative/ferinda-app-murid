@@ -63,7 +63,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_profile_id" />
 
         <include
-            android:id="@+id/include"
+            android:id="@+id/layout_teacher"
             layout="@layout/item_person"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_teacher" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_friends"
