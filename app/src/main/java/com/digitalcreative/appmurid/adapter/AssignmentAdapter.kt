@@ -10,10 +10,12 @@ import kotlinx.android.synthetic.main.item_tugas.view.*
 
 class AssignmentAdapter : RecyclerView.Adapter<AssignmentAdapter.ViewHolder>() {
     var assignments = listOf<Assignment>()
+    var listener: ClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_tugas, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_tugas, parent, false),
+            listener
         )
     }
 
@@ -24,12 +26,21 @@ class AssignmentAdapter : RecyclerView.Adapter<AssignmentAdapter.ViewHolder>() {
         holder.bind(assignment)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, private val listener: ClickListener?) :
+        RecyclerView.ViewHolder(itemView) {
         fun bind(assignment: Assignment) {
             with(itemView) {
                 tv_assignment_title.text = assignment.title
                 tv_assignment_description.text = assignment.description
+
+                setOnClickListener {
+                    listener?.onItemClicked(assignment)
+                }
             }
         }
+    }
+
+    interface ClickListener {
+        fun onItemClicked(assignment: Assignment)
     }
 }

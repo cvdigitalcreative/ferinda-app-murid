@@ -1,5 +1,6 @@
 package com.digitalcreative.appmurid.ui.home.tugas
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.digitalcreative.appmurid.R
 import com.digitalcreative.appmurid.adapter.AssignmentAdapter
 import com.digitalcreative.appmurid.data.entity.Assignment
+import com.digitalcreative.appmurid.ui.home.tugas.detail.DetailTugasActivity
 import kotlinx.android.synthetic.main.fragment_tugas.*
 
 
-class TugasFragment : Fragment() {
+class TugasFragment : Fragment(), AssignmentAdapter.ClickListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,17 +37,17 @@ class TugasFragment : Fragment() {
                             Assignment.Section.Question(
                                 "Soal 1",
                                 listOf(
-                                    Assignment.Section.Question.Choice("A"),
-                                    Assignment.Section.Question.Choice("B"),
-                                    Assignment.Section.Question.Choice("C")
+                                    "A",
+                                    "B",
+                                    "C"
                                 )
                             ),
                             Assignment.Section.Question(
                                 "Soal 2",
                                 listOf(
-                                    Assignment.Section.Question.Choice("A"),
-                                    Assignment.Section.Question.Choice("B"),
-                                    Assignment.Section.Question.Choice("C")
+                                    "A",
+                                    "B",
+                                    "C"
                                 )
                             )
                         )
@@ -56,17 +58,17 @@ class TugasFragment : Fragment() {
                             Assignment.Section.Question(
                                 "Soal 1",
                                 listOf(
-                                    Assignment.Section.Question.Choice("A"),
-                                    Assignment.Section.Question.Choice("B"),
-                                    Assignment.Section.Question.Choice("C")
+                                    "A",
+                                    "B",
+                                    "C"
                                 )
                             ),
                             Assignment.Section.Question(
                                 "Soal 2",
                                 listOf(
-                                    Assignment.Section.Question.Choice("A"),
-                                    Assignment.Section.Question.Choice("B"),
-                                    Assignment.Section.Question.Choice("C")
+                                    "A",
+                                    "B",
+                                    "C"
                                 )
                             )
                         )
@@ -83,17 +85,17 @@ class TugasFragment : Fragment() {
                             Assignment.Section.Question(
                                 "Soal 1",
                                 listOf(
-                                    Assignment.Section.Question.Choice("A"),
-                                    Assignment.Section.Question.Choice("B"),
-                                    Assignment.Section.Question.Choice("C")
+                                    "A",
+                                    "B",
+                                    "C"
                                 )
                             ),
                             Assignment.Section.Question(
                                 "Soal 2",
                                 listOf(
-                                    Assignment.Section.Question.Choice("A"),
-                                    Assignment.Section.Question.Choice("B"),
-                                    Assignment.Section.Question.Choice("C")
+                                    "A",
+                                    "B",
+                                    "C"
                                 )
                             )
                         )
@@ -104,17 +106,17 @@ class TugasFragment : Fragment() {
                             Assignment.Section.Question(
                                 "Soal 1",
                                 listOf(
-                                    Assignment.Section.Question.Choice("A"),
-                                    Assignment.Section.Question.Choice("B"),
-                                    Assignment.Section.Question.Choice("C")
+                                    "A",
+                                    "B",
+                                    "C"
                                 )
                             ),
                             Assignment.Section.Question(
                                 "Soal 2",
                                 listOf(
-                                    Assignment.Section.Question.Choice("A"),
-                                    Assignment.Section.Question.Choice("B"),
-                                    Assignment.Section.Question.Choice("C")
+                                    "A",
+                                    "B",
+                                    "C"
                                 )
                             )
                         )
@@ -123,11 +125,21 @@ class TugasFragment : Fragment() {
             )
         )
 
-        val assignmentAdapter = AssignmentAdapter().apply { assignments = listAssignment }
+        val assignmentAdapter = AssignmentAdapter().apply {
+            assignments = listAssignment
+            listener = this@TugasFragment
+        }
         rv_tugas.apply {
             adapter = assignmentAdapter
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
         }
+    }
+
+    override fun onItemClicked(assignment: Assignment) {
+        val intent = Intent(requireContext(), DetailTugasActivity::class.java).apply {
+            putExtra(DetailTugasActivity.EXTRA_ASSIGNMENT, assignment)
+        }
+        startActivity(intent)
     }
 }
