@@ -1,4 +1,4 @@
-package com.digitalcreative.appmurid.ui.home.tugas
+package com.digitalcreative.appmurid.presentation.home.tugas
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.digitalcreative.appmurid.R
 import com.digitalcreative.appmurid.adapter.AssignmentAdapter
-import com.digitalcreative.appmurid.data.entity.Assignment
-import com.digitalcreative.appmurid.ui.home.tugas.detail.DetailTugasActivity
+import com.digitalcreative.appmurid.data.model.Assignment
+import com.digitalcreative.appmurid.presentation.home.tugas.detail.DetailTugasActivity
 import kotlinx.android.synthetic.main.fragment_tugas.*
 
 

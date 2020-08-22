@@ -1,4 +1,4 @@
-package com.digitalcreative.appmurid.ui.home.raport.semester
+package com.digitalcreative.appmurid.presentation.home.raport.semester
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.digitalcreative.appmurid.R
 import com.digitalcreative.appmurid.adapter.RaportAdapter
-import com.digitalcreative.appmurid.data.entity.Raport
+import com.digitalcreative.appmurid.data.model.Raport
 import kotlinx.android.synthetic.main.fragment_semester.*
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.agenda.AgendaFragment">
+    tools:context=".presentation.home.agenda.AgendaFragment">
 
     <TextView
         android:id="@+id/textView8"

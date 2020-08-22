@@ -1,4 +1,4 @@
-package com.digitalcreative.appmurid.ui.home.tugas.detail
+package com.digitalcreative.appmurid.presentation.home.tugas.detail
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalcreative.appmurid.R
 import com.digitalcreative.appmurid.adapter.SectionAdapter
-import com.digitalcreative.appmurid.data.entity.Assignment
+import com.digitalcreative.appmurid.data.model.Assignment
 import kotlinx.android.synthetic.main.activity_detail_tugas.*
 import kotlinx.android.synthetic.main.toolbar.*
 

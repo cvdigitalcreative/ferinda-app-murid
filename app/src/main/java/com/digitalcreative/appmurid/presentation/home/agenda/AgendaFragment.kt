@@ -1,4 +1,4 @@
-package com.digitalcreative.appmurid.ui.home.agenda
+package com.digitalcreative.appmurid.presentation.home.agenda
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.digitalcreative.appmurid.R
 import com.digitalcreative.appmurid.adapter.AgendaAdapter
-import com.digitalcreative.appmurid.data.entity.Agenda
+import com.digitalcreative.appmurid.data.model.Agenda
 import kotlinx.android.synthetic.main.fragment_agenda.*
 
 

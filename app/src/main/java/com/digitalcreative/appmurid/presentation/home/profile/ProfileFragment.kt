@@ -1,4 +1,4 @@
-package com.digitalcreative.appmurid.ui.home.profile
+package com.digitalcreative.appmurid.presentation.home.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.digitalcreative.appmurid.R
 import com.digitalcreative.appmurid.adapter.FriendAdapter
-import com.digitalcreative.appmurid.data.entity.Profile
+import com.digitalcreative.appmurid.data.model.Profile
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.item_person.view.*
 

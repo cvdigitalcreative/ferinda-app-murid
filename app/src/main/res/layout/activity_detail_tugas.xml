@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.home.tugas.detail.DetailTugasActivity">
+        tools:context=".presentation.home.tugas.detail.DetailTugasActivity">
 
         <include
             android:id="@+id/include"

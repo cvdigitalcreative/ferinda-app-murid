@@ -1,13 +1,13 @@
-package com.digitalcreative.appmurid.ui.home
+package com.digitalcreative.appmurid.presentation.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.ui.home.agenda.AgendaFragment
-import com.digitalcreative.appmurid.ui.home.profile.ProfileFragment
-import com.digitalcreative.appmurid.ui.home.raport.RaportFragment
-import com.digitalcreative.appmurid.ui.home.tugas.TugasFragment
+import com.digitalcreative.appmurid.presentation.home.agenda.AgendaFragment
+import com.digitalcreative.appmurid.presentation.home.profile.ProfileFragment
+import com.digitalcreative.appmurid.presentation.home.raport.RaportFragment
+import com.digitalcreative.appmurid.presentation.home.tugas.TugasFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
