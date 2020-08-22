@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.data.model.Student
 import com.digitalcreative.appmurid.preferences.UserPreferences
 import com.digitalcreative.appmurid.presentation.home.HomeActivity
 import com.digitalcreative.appmurid.utils.loadingDialog
@@ -29,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         if (viewModel.isUserLoggedIn()) {
-            moveToHome()
+            moveToHome(true)
             finish()
         }
 
@@ -44,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initObserver() {
         viewModel.loading.observe(this, Observer(this::showLoading))
-        viewModel.data.observe(this, Observer(this::moveToHome))
+        viewModel.success.observe(this, Observer(this::moveToHome))
         viewModel.message.observe(this, Observer(this::showErrorMessage))
     }
 
@@ -56,9 +55,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun moveToHome(student: Student? = null) {
-        startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-        finish()
+    private fun moveToHome(shouldMove: Boolean) {
+        if (shouldMove) {
+            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+            finish()
+        }
     }
 
     private fun showErrorMessage(message: String) {

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.digitalcreative.appmurid.data.Result
-import com.digitalcreative.appmurid.data.model.Student
 import com.digitalcreative.appmurid.domain.usecases.common.LoginUseCase
 import com.digitalcreative.appmurid.preferences.UserPreferences
 import com.digitalcreative.appmurid.utils.Constants
@@ -21,8 +20,8 @@ class LoginViewModel @ViewModelInject constructor(
     private val mLoading = MutableLiveData<Boolean>()
     val loading = mLoading
 
-    private val mData = MutableLiveData<Student>()
-    val data = mData
+    private val mSuccess = MutableLiveData<Boolean>()
+    val success = mSuccess
 
     private val mMessage = MutableLiveData<String>()
     val message = mMessage
@@ -42,8 +41,7 @@ class LoginViewModel @ViewModelInject constructor(
             when (val response = useCase(emailNis, password)) {
                 is Result.Success -> {
                     preferences.setString(UserPreferences.KEY_NIS, response.data.id)
-
-                    mData.postValue((response.data))
+                    mSuccess.postValue(true)
                     mLoading.postValue(false)
                 }
 

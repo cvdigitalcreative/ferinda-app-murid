@@ -2,7 +2,7 @@ package com.digitalcreative.appmurid.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Student(
+data class Boolean(
     @SerializedName("nis")
     val id: String,
 

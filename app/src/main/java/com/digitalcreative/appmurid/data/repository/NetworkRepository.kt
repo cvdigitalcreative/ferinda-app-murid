@@ -3,7 +3,7 @@ package com.digitalcreative.appmurid.data.repository
 import android.util.Log
 import com.digitalcreative.appmurid.api.ApiService
 import com.digitalcreative.appmurid.data.Result
-import com.digitalcreative.appmurid.data.model.Student
+import com.digitalcreative.appmurid.data.model.Boolean
 import com.digitalcreative.appmurid.utils.Constants.CONNECTION_ERROR
 import com.digitalcreative.appmurid.utils.Constants.STATUS_SUCCESS
 import com.digitalcreative.appmurid.utils.Constants.UNKNOWN_ERROR
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Singleton
 class NetworkRepository @Inject constructor(private val service: ApiService) {
 
-    suspend fun login(emailNis: String, password: String): Result<Student> {
+    suspend fun login(emailNis: String, password: String): Result<Boolean> {
         return try {
             val body = MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
