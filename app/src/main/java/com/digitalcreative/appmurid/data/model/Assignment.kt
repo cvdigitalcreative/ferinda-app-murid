@@ -1,4 +1,4 @@
-package com.digitalcreative.appmurid.data.entity
+package com.digitalcreative.appmurid.data.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

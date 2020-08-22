@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.data.entity.Raport
+import com.digitalcreative.appmurid.data.model.Raport
 import kotlinx.android.synthetic.main.item_raport_value.view.*
 
 class RaportItemAdapter : RecyclerView.Adapter<RaportItemAdapter.ViewHolder>() {

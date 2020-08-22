@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.data.entity.Assignment
+import com.digitalcreative.appmurid.data.model.Assignment
 import kotlinx.android.synthetic.main.item_tugas.view.*
 
 class AssignmentAdapter : RecyclerView.Adapter<AssignmentAdapter.ViewHolder>() {

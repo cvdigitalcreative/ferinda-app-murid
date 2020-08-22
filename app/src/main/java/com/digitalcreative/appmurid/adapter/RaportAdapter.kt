@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.data.entity.Raport
+import com.digitalcreative.appmurid.data.model.Raport
 import com.digitalcreative.appmurid.utils.AnimUtil.TYPE_COLLAPSE
 import com.digitalcreative.appmurid.utils.AnimUtil.TYPE_EXPAND
 import com.digitalcreative.appmurid.utils.AnimUtil.animateCollapse

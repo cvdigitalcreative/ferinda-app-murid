@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.data.entity.Assignment
+import com.digitalcreative.appmurid.data.model.Assignment
 import kotlinx.android.synthetic.main.item_assignment_section.view.*
 
 class SectionAdapter : RecyclerView.Adapter<SectionAdapter.ViewHolder>() {

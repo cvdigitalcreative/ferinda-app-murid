@@ -1,4 +1,4 @@
-package com.digitalcreative.appmurid.data.entity
+package com.digitalcreative.appmurid.data.model
 
 data class Raport(
     val section: String,

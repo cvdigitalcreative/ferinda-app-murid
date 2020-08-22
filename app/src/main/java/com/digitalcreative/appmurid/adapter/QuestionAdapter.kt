@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.data.entity.Assignment
+import com.digitalcreative.appmurid.data.model.Assignment
 import com.digitalcreative.appmurid.utils.visible
 import kotlinx.android.synthetic.main.item_assignment_question.view.*
 

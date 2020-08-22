@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.data.entity.Agenda
+import com.digitalcreative.appmurid.data.model.Agenda
 import kotlinx.android.synthetic.main.item_agenda.view.*
 
 class AgendaAdapter : RecyclerView.Adapter<AgendaAdapter.ViewHolder>() {
