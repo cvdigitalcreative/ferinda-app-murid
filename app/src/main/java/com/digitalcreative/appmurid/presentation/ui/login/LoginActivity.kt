@@ -6,22 +6,17 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.utils.preferences.UserPreferences
 import com.digitalcreative.appmurid.presentation.ui.home.HomeActivity
 import com.digitalcreative.appmurid.utils.helper.loadingDialog
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_login.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<LoginViewModel>()
     private val loadingDialog by loadingDialog()
-
-    @Inject
-    lateinit var preferences: UserPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
