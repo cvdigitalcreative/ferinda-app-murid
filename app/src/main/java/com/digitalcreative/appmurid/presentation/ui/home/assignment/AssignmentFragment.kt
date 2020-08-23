@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.presentation.adapter.AssignmentAdapter
 import com.digitalcreative.appmurid.data.model.Assignment
+import com.digitalcreative.appmurid.presentation.adapter.AssignmentAdapter
 import com.digitalcreative.appmurid.presentation.ui.home.assignment.detail.AssignmentDetailActivity
 import com.digitalcreative.appmurid.utils.helper.loadingDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +37,8 @@ class AssignmentFragment : Fragment(), AssignmentAdapter.ClickListener {
 
         initObservers()
         viewModel.getAllAssignment()
+
+        assignmentAdapter.listener = this
 
         rv_tugas.apply {
             adapter = assignmentAdapter
@@ -73,7 +75,6 @@ class AssignmentFragment : Fragment(), AssignmentAdapter.ClickListener {
     private fun showAssignments(assignments: List<Assignment>) {
         assignmentAdapter.apply {
             this.assignments = assignments
-            listener = this@AssignmentFragment
             notifyDataSetChanged()
         }
     }
