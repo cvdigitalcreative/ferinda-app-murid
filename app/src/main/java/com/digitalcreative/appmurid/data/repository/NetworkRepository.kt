@@ -5,9 +5,9 @@ import com.digitalcreative.appmurid.api.ApiService
 import com.digitalcreative.appmurid.data.Result
 import com.digitalcreative.appmurid.data.model.Assignment
 import com.digitalcreative.appmurid.data.model.Student
-import com.digitalcreative.appmurid.utils.Constants.CONNECTION_ERROR
-import com.digitalcreative.appmurid.utils.Constants.STATUS_SUCCESS
-import com.digitalcreative.appmurid.utils.Constants.UNKNOWN_ERROR
+import com.digitalcreative.appmurid.utils.helper.Constants.CONNECTION_ERROR
+import com.digitalcreative.appmurid.utils.helper.Constants.STATUS_SUCCESS
+import com.digitalcreative.appmurid.utils.helper.Constants.UNKNOWN_ERROR
 import okhttp3.MultipartBody
 import java.net.ConnectException
 import javax.inject.Inject

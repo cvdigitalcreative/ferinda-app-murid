@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".presentation.home.assignment.detail.AssignmentDetailActivity">
+        tools:context=".presentation.ui.home.assignment.detail.AssignmentDetailActivity">
 
         <include
             android:id="@+id/include"

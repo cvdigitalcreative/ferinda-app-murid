@@ -15,9 +15,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
-        <activity android:name=".presentation.home.assignment.detail.AssignmentDetailActivity" />
-        <activity android:name=".presentation.home.HomeActivity" />
-        <activity android:name=".presentation.login.LoginActivity">
+        <activity android:name="com.digitalcreative.appmurid.presentation.ui.home.assignment.detail.AssignmentDetailActivity" />
+        <activity android:name="com.digitalcreative.appmurid.presentation.ui.home.HomeActivity" />
+        <activity android:name="com.digitalcreative.appmurid.presentation.ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
