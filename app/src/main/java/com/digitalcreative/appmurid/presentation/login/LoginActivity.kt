@@ -49,9 +49,13 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showLoading(isShow: Boolean) {
         if (isShow) {
-            loadingDialog.showDialog()
+            if (!loadingDialog.isAdded) {
+                loadingDialog.showDialog()
+            }
         } else {
-            loadingDialog.closeDialog()
+            if (loadingDialog.isAdded) {
+                loadingDialog.closeDialog()
+            }
         }
     }
 

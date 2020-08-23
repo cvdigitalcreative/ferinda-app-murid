@@ -13,10 +13,7 @@ data class Assignment(
     val title: String,
 
     @SerializedName("deskripsi_tugas")
-    val description: String,
-
-    @SerializedName("tanggal_tugas")
-    val date: String
+    val description: String
 ) : Parcelable {
     @Parcelize
     data class Section(

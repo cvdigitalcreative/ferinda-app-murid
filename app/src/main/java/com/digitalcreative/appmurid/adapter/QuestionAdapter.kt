@@ -35,8 +35,8 @@ class QuestionAdapter : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
                 for ((index, value) in question.choices.withIndex()) {
                     val btn = RadioButton(context).apply {
                         id = View.generateViewId()
-//                        text = value
-                        tag = (0..2).random()
+                        text = value.choice
+                        tag = value.id
                         isChecked = index == 0
                     }
                     rg_choice.addView(btn)

@@ -54,15 +54,19 @@ class AssignmentFragment : Fragment(), AssignmentAdapter.ClickListener {
 
     private fun initObservers() {
         viewModel.loading.observe(viewLifecycleOwner, Observer(this::showLoading))
-        viewModel.data.observe(viewLifecycleOwner, Observer(this::showAssignments))
+        viewModel.assignment.observe(viewLifecycleOwner, Observer(this::showAssignments))
         viewModel.message.observe(viewLifecycleOwner, Observer(this::showMessage))
     }
 
     private fun showLoading(isShow: Boolean) {
         if (isShow) {
-            loadingDialog.showDialog()
+            if (!loadingDialog.isAdded) {
+                loadingDialog.showDialog()
+            }
         } else {
-            loadingDialog.closeDialog()
+            if (loadingDialog.isAdded) {
+                loadingDialog.closeDialog()
+            }
         }
     }
 
