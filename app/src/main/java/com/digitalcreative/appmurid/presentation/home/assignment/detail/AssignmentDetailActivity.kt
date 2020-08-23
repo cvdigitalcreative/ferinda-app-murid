@@ -1,12 +1,12 @@
 package com.digitalcreative.appmurid.presentation.home.assignment.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalcreative.appmurid.R
@@ -18,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_assignment_detail.*
 import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class AssignmentDetailActivity : AppCompatActivity() {
@@ -55,14 +56,18 @@ class AssignmentDetailActivity : AppCompatActivity() {
         manager = LinearLayoutManager(this)
 
         btn_send_answer.setOnClickListener {
-            getAnswers()
+            val questions = assignmentQuestions
+            val answers = getAnswers()
+
+            viewModel.sendAssignmentAnswer(assignment.id, questions, answers)
         }
     }
 
     private fun initObservers() {
         viewModel.loading.observe(this, Observer(this::showLoading))
         viewModel.assignmentQuestion.observe(this, Observer(this::showAssignmentQuestion))
-        viewModel.message.observe(this, Observer(this::showMessage))
+        viewModel.successMessage.observe(this, Observer(this::showSuccessMessage))
+        viewModel.errorMessage.observe(this, Observer(this::showErrorMessage))
     }
 
     private fun showLoading(isShow: Boolean) {
@@ -92,32 +97,40 @@ class AssignmentDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun showMessage(message: String) {
+    private fun showSuccessMessage(message: String) {
+        Toasty.success(this, message, Toasty.LENGTH_LONG, true).show()
+    }
+
+    private fun showErrorMessage(message: String) {
         Toasty.error(this, message, Toasty.LENGTH_LONG, true).show()
     }
 
-    private fun getAnswers() {
-        for ((index, _) in assignmentQuestions.withIndex()) {
-            val container = manager.getChildAt(index)
-            val rvQuestion = container?.findViewById<RecyclerView>(R.id.rv_question)
+    private fun getAnswers(): List<String> {
+        val listAnswer = mutableListOf<String>()
 
-            val childManager = rvQuestion?.layoutManager
-            val childCount = childManager?.itemCount ?: 0
+        lifecycleScope.launch {
+            for ((index, _) in assignmentQuestions.withIndex()) {
+                val container = manager.getChildAt(index)
+                val rvQuestion = container?.findViewById<RecyclerView>(R.id.rv_question)
 
-            for (j in 0 until childCount) {
-                val childContainer = childManager?.getChildAt(j)
-                val radioGroup = childContainer?.findViewById<RadioGroup>(R.id.rg_choice)
+                val childManager = rvQuestion?.layoutManager
+                val childCount = childManager?.itemCount ?: 0
 
-                radioGroup?.let {
-                    val rbId = radioGroup.checkedRadioButtonId
-                    val rb = childContainer.findViewById<RadioButton>(rbId)
-                    val rbText = rb.text
-                    val rbTag = rb.tag
+                for (j in 0 until childCount) {
+                    val childContainer = childManager?.getChildAt(j)
+                    val radioGroup = childContainer?.findViewById<RadioGroup>(R.id.rg_choice)
 
-                    Log.e("A", "Text = $rbText")
-                    Log.e("A", "Tag = $rbTag")
+                    radioGroup?.let {
+                        val rbId = radioGroup.checkedRadioButtonId
+                        val rb = childContainer.findViewById<RadioButton>(rbId)
+                        val answerId = rb.tag as String
+
+                        listAnswer.add(answerId)
+                    }
                 }
             }
         }
+
+        return listAnswer
     }
 }

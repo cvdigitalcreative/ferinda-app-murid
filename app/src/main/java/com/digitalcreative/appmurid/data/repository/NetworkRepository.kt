@@ -75,4 +75,32 @@ class NetworkRepository @Inject constructor(private val service: ApiService) {
             Result.ErrorRequest(UNKNOWN_ERROR)
         }
     }
+
+    suspend fun sendAssignmentAnswer(
+        studentId: String,
+        classId: String,
+        assignmentId: String,
+        questions: String,
+        answers: String
+    ): Result<String> {
+        return try {
+            val body = MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("id_soal", questions)
+                .addFormDataPart("id_pilihan_jawaban", answers)
+                .build()
+            val response = service.sendAssignmentAnswer(studentId, classId, assignmentId, body)
+            if (response.status == STATUS_SUCCESS) {
+                Result.Success(response.message)
+            } else {
+                Result.ErrorRequest(response.message)
+            }
+        } catch (e: ConnectException) {
+            Log.e("NR-SendAnswer", e.localizedMessage!!)
+            Result.ErrorRequest(CONNECTION_ERROR)
+        } catch (e: Exception) {
+            Log.e("NR-SendAnswer", e.localizedMessage!!)
+            Result.ErrorRequest(UNKNOWN_ERROR)
+        }
+    }
 }

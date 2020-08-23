@@ -55,7 +55,7 @@ class AssignmentFragment : Fragment(), AssignmentAdapter.ClickListener {
     private fun initObservers() {
         viewModel.loading.observe(viewLifecycleOwner, Observer(this::showLoading))
         viewModel.assignment.observe(viewLifecycleOwner, Observer(this::showAssignments))
-        viewModel.message.observe(viewLifecycleOwner, Observer(this::showMessage))
+        viewModel.errorMessage.observe(viewLifecycleOwner, Observer(this::showMessage))
     }
 
     private fun showLoading(isShow: Boolean) {

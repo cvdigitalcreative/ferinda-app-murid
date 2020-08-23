@@ -37,4 +37,19 @@ interface ApiService {
         @Path("assignment_id")
         assignmentId: String
     ): BaseResponse<List<Assignment.Section>>
+
+    @POST("murid/{student_id}/kelas/{class_id}/tugas/{assignment_id}/jawab/")
+    suspend fun sendAssignmentAnswer(
+        @Path("student_id")
+        studentId: String,
+
+        @Path("class_id")
+        classId: String,
+
+        @Path("assignment_id")
+        assignmentId: String,
+
+        @Body
+        body: RequestBody
+    ): BaseResponse<Nothing>
 }

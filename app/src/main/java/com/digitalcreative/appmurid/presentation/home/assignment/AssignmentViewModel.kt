@@ -8,6 +8,7 @@ import com.digitalcreative.appmurid.data.Result
 import com.digitalcreative.appmurid.data.model.Assignment
 import com.digitalcreative.appmurid.domain.usecases.assignment.GetAllAssignment
 import com.digitalcreative.appmurid.domain.usecases.assignment.GetAssignmentQuestion
+import com.digitalcreative.appmurid.domain.usecases.assignment.SendAssignmentAnswer
 import com.digitalcreative.appmurid.preferences.UserPreferences
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.Dispatchers
@@ -15,8 +16,9 @@ import kotlinx.coroutines.launch
 
 @ActivityRetainedScoped
 class AssignmentViewModel @ViewModelInject constructor(
-    private val getAllAssignmentUseCase: GetAllAssignment,
-    private val getAssignmentQuestionUseCase: GetAssignmentQuestion,
+    private val getAssignmentUseCase: GetAllAssignment,
+    private val getQuestionUseCase: GetAssignmentQuestion,
+    private val sendAssignmentUseCase: SendAssignmentAnswer,
     private val preferences: UserPreferences
 ) : ViewModel() {
     private val mLoading = MutableLiveData<Boolean>()
@@ -28,8 +30,11 @@ class AssignmentViewModel @ViewModelInject constructor(
     private val mAssignmentQuestion = MutableLiveData<List<Assignment.Section>>()
     val assignmentQuestion = mAssignmentQuestion
 
-    private val mMessage = MutableLiveData<String>()
-    val message = mMessage
+    private val mSuccessMessage = MutableLiveData<String>()
+    val successMessage = mSuccessMessage
+
+    private val mErrorMessage = MutableLiveData<String>()
+    val errorMessage = mErrorMessage
 
     fun getAllAssignment() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -38,14 +43,14 @@ class AssignmentViewModel @ViewModelInject constructor(
             val studentId = preferences.getString(UserPreferences.KEY_NIS)
             val classId = preferences.getString(UserPreferences.KEY_CLASS)
 
-            when (val response = getAllAssignmentUseCase(studentId, classId)) {
+            when (val response = getAssignmentUseCase(studentId, classId)) {
                 is Result.Success -> {
                     mAssignment.postValue((response.data))
                     mLoading.postValue(false)
                 }
 
                 is Result.ErrorRequest -> {
-                    mMessage.postValue(response.message)
+                    mErrorMessage.postValue(response.message)
                     mLoading.postValue(false)
                 }
             }
@@ -59,15 +64,59 @@ class AssignmentViewModel @ViewModelInject constructor(
             val studentId = preferences.getString(UserPreferences.KEY_NIS)
             val classId = preferences.getString(UserPreferences.KEY_CLASS)
 
-            when (val response = getAssignmentQuestionUseCase(studentId, classId, assignmentId)) {
+            when (val response = getQuestionUseCase(studentId, classId, assignmentId)) {
                 is Result.Success -> {
                     mAssignmentQuestion.postValue((response.data))
                     mLoading.postValue(false)
                 }
 
                 is Result.ErrorRequest -> {
-                    mMessage.postValue(response.message)
+                    mErrorMessage.postValue(response.message)
                     mLoading.postValue(false)
+                }
+            }
+        }
+    }
+
+    fun sendAssignmentAnswer(
+        assignmentId: String,
+        questions: List<Assignment.Section>,
+        answers: List<String>
+    ) {
+        viewModelScope.launch {
+            mLoading.postValue(true)
+
+            val listQuestionId = mutableListOf<String>()
+            questions.map { section ->
+                section.questions.forEach { question ->
+                    listQuestionId.add(question.id)
+                }
+            }
+
+            val studentId = preferences.getString(UserPreferences.KEY_NIS)
+            val classId = preferences.getString(UserPreferences.KEY_CLASS)
+            val questionFlatten = listQuestionId.joinToString(prefix = "[", postfix = "]")
+            val answersFlatten = answers.joinToString(prefix = "[", postfix = "]")
+
+            launch(Dispatchers.IO) {
+                val response = sendAssignmentUseCase(
+                    studentId,
+                    classId,
+                    assignmentId,
+                    questionFlatten,
+                    answersFlatten
+                )
+
+                when (response) {
+                    is Result.Success -> {
+                        mSuccessMessage.postValue((response.data))
+                        mLoading.postValue(false)
+                    }
+
+                    is Result.ErrorRequest -> {
+                        mErrorMessage.postValue(response.message)
+                        mLoading.postValue(false)
+                    }
                 }
             }
         }
