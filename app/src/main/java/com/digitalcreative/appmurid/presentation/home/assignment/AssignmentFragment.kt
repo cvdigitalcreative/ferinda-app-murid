@@ -36,6 +36,7 @@ class AssignmentFragment : Fragment(), AssignmentAdapter.ClickListener {
         super.onActivityCreated(savedInstanceState)
 
         initObservers()
+        viewModel.getAllAssignment()
 
         rv_tugas.apply {
             adapter = assignmentAdapter

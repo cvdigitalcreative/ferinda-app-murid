@@ -26,11 +26,7 @@ class AssignmentViewModel @ViewModelInject constructor(
     private val mMessage = MutableLiveData<String>()
     val message = mMessage
 
-    init {
-        getAllAssignment()
-    }
-
-    private fun getAllAssignment() {
+    fun getAllAssignment() {
         viewModelScope.launch(Dispatchers.IO) {
             mLoading.postValue(true)
 
