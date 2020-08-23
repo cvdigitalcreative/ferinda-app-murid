@@ -3,6 +3,7 @@ package com.digitalcreative.appmurid.data.repository
 import android.util.Log
 import com.digitalcreative.appmurid.api.ApiService
 import com.digitalcreative.appmurid.data.Result
+import com.digitalcreative.appmurid.data.model.Assignment
 import com.digitalcreative.appmurid.data.model.Student
 import com.digitalcreative.appmurid.utils.Constants.CONNECTION_ERROR
 import com.digitalcreative.appmurid.utils.Constants.STATUS_SUCCESS
@@ -29,10 +30,27 @@ class NetworkRepository @Inject constructor(private val service: ApiService) {
                 Result.ErrorRequest(response.message)
             }
         } catch (e: ConnectException) {
-            Log.e("NetworkRepository-Login", e.localizedMessage!!)
+            Log.e("NR-Login", e.localizedMessage!!)
             Result.ErrorRequest(CONNECTION_ERROR)
         } catch (e: Exception) {
-            Log.e("NetworkRepository-Login", e.localizedMessage!!)
+            Log.e("NR-Login", e.localizedMessage!!)
+            Result.ErrorRequest(UNKNOWN_ERROR)
+        }
+    }
+
+    suspend fun getAllAssignment(studentId: String, classId: String): Result<List<Assignment>> {
+        return try {
+            val response = service.getAllAssignment(studentId, classId)
+            if (response.status == STATUS_SUCCESS) {
+                Result.Success(response.data)
+            } else {
+                Result.ErrorRequest(response.message)
+            }
+        } catch (e: ConnectException) {
+            Log.e("NR-GetAllAssignment", e.localizedMessage!!)
+            Result.ErrorRequest(CONNECTION_ERROR)
+        } catch (e: Exception) {
+            Log.e("NR-GetAllAssignment", e.localizedMessage!!)
             Result.ErrorRequest(UNKNOWN_ERROR)
         }
     }

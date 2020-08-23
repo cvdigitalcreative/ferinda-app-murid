@@ -1,4 +1,4 @@
-package com.digitalcreative.appmurid.presentation.home.raport
+package com.digitalcreative.appmurid.presentation.home.report
 
 import android.os.Bundle
 import android.view.LayoutInflater

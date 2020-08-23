@@ -8,7 +8,7 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
 
 @ActivityRetainedScoped
-class LoginUseCase @Inject constructor(private val networkRepository: NetworkRepository) {
+class Login @Inject constructor(private val networkRepository: NetworkRepository) {
     suspend operator fun invoke(emailNis: String, password: String): Result<Student> {
         val hashedPassword = sha256(password)
         return networkRepository.login(emailNis, hashedPassword)

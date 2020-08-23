@@ -43,8 +43,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initObserver() {
         viewModel.loading.observe(this, Observer(this::showLoading))
-        viewModel.success.observe(this, Observer(this::moveToHome))
-        viewModel.message.observe(this, Observer(this::showErrorMessage))
+        viewModel.data.observe(this, Observer(this::moveToHome))
+        viewModel.message.observe(this, Observer(this::showMessage))
     }
 
     private fun showLoading(isShow: Boolean) {
@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun showErrorMessage(message: String) {
+    private fun showMessage(message: String) {
         Toasty.error(this, message, Toasty.LENGTH_LONG, true).show()
     }
 }

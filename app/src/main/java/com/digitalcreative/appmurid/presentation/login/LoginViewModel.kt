@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.digitalcreative.appmurid.data.Result
-import com.digitalcreative.appmurid.domain.usecases.common.LoginUseCase
+import com.digitalcreative.appmurid.domain.usecases.common.Login
 import com.digitalcreative.appmurid.preferences.UserPreferences
 import com.digitalcreative.appmurid.utils.Constants
 import dagger.hilt.android.scopes.ActivityRetainedScoped
@@ -14,14 +14,14 @@ import kotlinx.coroutines.launch
 
 @ActivityRetainedScoped
 class LoginViewModel @ViewModelInject constructor(
-    private val useCase: LoginUseCase,
+    private val useCase: Login,
     private val preferences: UserPreferences
 ) : ViewModel() {
     private val mLoading = MutableLiveData<Boolean>()
     val loading = mLoading
 
-    private val mSuccess = MutableLiveData<Boolean>()
-    val success = mSuccess
+    private val mData = MutableLiveData<Boolean>()
+    val data = mData
 
     private val mMessage = MutableLiveData<String>()
     val message = mMessage
@@ -40,8 +40,12 @@ class LoginViewModel @ViewModelInject constructor(
             mLoading.postValue(true)
             when (val response = useCase(emailNis, password)) {
                 is Result.Success -> {
-                    preferences.setString(UserPreferences.KEY_NIS, response.data.id)
-                    mSuccess.postValue(true)
+                    preferences.apply {
+                        setString(UserPreferences.KEY_NIS, response.data.id)
+                        setString(UserPreferences.KEY_CLASS, response.data.classId)
+                    }
+
+                    mData.postValue(true)
                     mLoading.postValue(false)
                 }
 

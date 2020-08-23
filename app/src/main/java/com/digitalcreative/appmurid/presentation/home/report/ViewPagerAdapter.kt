@@ -1,10 +1,10 @@
-package com.digitalcreative.appmurid.presentation.home.raport
+package com.digitalcreative.appmurid.presentation.home.report
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.digitalcreative.appmurid.presentation.home.raport.semester.SemesterFragment
+import com.digitalcreative.appmurid.presentation.home.report.semester.SemesterFragment
 
 class ViewPagerAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
 

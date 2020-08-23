@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
-        <activity android:name=".presentation.home.tugas.detail.DetailTugasActivity" />
+        <activity android:name=".presentation.home.assignment.detail.AssignmentDetailActivity" />
         <activity android:name=".presentation.home.HomeActivity" />
         <activity android:name=".presentation.login.LoginActivity">
             <intent-filter>

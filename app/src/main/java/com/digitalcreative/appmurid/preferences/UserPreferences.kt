@@ -17,6 +17,7 @@ class UserPreferences @Inject constructor(@ApplicationContext private val contex
     companion object {
         private const val PREFERENCE_FILENAME = "user_preferences"
         const val KEY_NIS = "nis"
+        const val KEY_CLASS = "class"
     }
 
     init {

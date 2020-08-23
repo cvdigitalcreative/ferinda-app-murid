@@ -27,5 +27,8 @@ data class Student(
     val address: String,
 
     @SerializedName("telepon")
-    val phone: String
+    val phone: String,
+
+    @SerializedName("id_kelas")
+    val classId: String
 )

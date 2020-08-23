@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.digitalcreative.appmurid.R
 import com.digitalcreative.appmurid.presentation.home.agenda.AgendaFragment
+import com.digitalcreative.appmurid.presentation.home.assignment.AssignmentFragment
 import com.digitalcreative.appmurid.presentation.home.profile.ProfileFragment
-import com.digitalcreative.appmurid.presentation.home.raport.RaportFragment
-import com.digitalcreative.appmurid.presentation.home.tugas.TugasFragment
+import com.digitalcreative.appmurid.presentation.home.report.RaportFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_home.*
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_tugas -> {
-                    loadFragment(TugasFragment())
+                    loadFragment(AssignmentFragment())
                 }
                 R.id.menu_raport -> {
                     loadFragment(RaportFragment())
