@@ -19,4 +19,5 @@
     <string name="teman_sekelas">Teman Sekelas</string>
     <string name="wali_kelas">Wali Kelas</string>
     <string name="kirim_jawaban">Kirim Jawaban</string>
+    <string name="ui_avatar">https://ui-avatars.com/api/?name=%1$s&amp;size=128&amp;rounded=true&amp;background=4A5DFF&amp;color=FFFFFF&amp;format=png</string>
 </resources>

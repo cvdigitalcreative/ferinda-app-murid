@@ -5,6 +5,7 @@ import com.digitalcreative.appmurid.api.ApiService
 import com.digitalcreative.appmurid.data.Result
 import com.digitalcreative.appmurid.data.model.Agenda
 import com.digitalcreative.appmurid.data.model.Assignment
+import com.digitalcreative.appmurid.data.model.Profile
 import com.digitalcreative.appmurid.data.model.Student
 import com.digitalcreative.appmurid.utils.helper.Constants.CONNECTION_ERROR
 import com.digitalcreative.appmurid.utils.helper.Constants.STATUS_SUCCESS
@@ -118,6 +119,23 @@ class NetworkRepository @Inject constructor(private val service: ApiService) {
             Result.ErrorRequest(CONNECTION_ERROR)
         } catch (e: Exception) {
             Log.e("NetworkRequest", "GetAllAgenda -> ${e.localizedMessage}")
+            Result.ErrorRequest(UNKNOWN_ERROR)
+        }
+    }
+
+    suspend fun getDetailProfile(studentId: String): Result<Profile> {
+        return try {
+            val response = service.getDetailProfile(studentId)
+            if (response.status == STATUS_SUCCESS) {
+                Result.Success(response.data)
+            } else {
+                Result.ErrorRequest(response.message)
+            }
+        } catch (e: ConnectException) {
+            Log.e("NetworkRequest", "GetDetailProfile -> ${e.localizedMessage}")
+            Result.ErrorRequest(CONNECTION_ERROR)
+        } catch (e: Exception) {
+            Log.e("NetworkRequest", "GetDetailProfile -> ${e.localizedMessage}")
             Result.ErrorRequest(UNKNOWN_ERROR)
         }
     }

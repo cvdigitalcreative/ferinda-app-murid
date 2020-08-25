@@ -2,6 +2,7 @@ package com.digitalcreative.appmurid.api
 
 import com.digitalcreative.appmurid.data.model.Agenda
 import com.digitalcreative.appmurid.data.model.Assignment
+import com.digitalcreative.appmurid.data.model.Profile
 import com.digitalcreative.appmurid.data.model.Student
 import com.digitalcreative.appmurid.data.response.BaseResponse
 import okhttp3.RequestBody
@@ -56,4 +57,10 @@ interface ApiService {
 
     @GET("murid/agenda/")
     suspend fun getAllAgenda(): BaseResponse<List<Agenda>>
+
+    @GET("murid/{student_id}")
+    suspend fun getDetailProfile(
+        @Path("student_id")
+        studentId: String
+    ): BaseResponse<Profile>
 }

@@ -10,7 +10,7 @@ import com.digitalcreative.appmurid.data.model.Profile
 import kotlinx.android.synthetic.main.item_person.view.*
 
 class FriendAdapter : RecyclerView.Adapter<FriendAdapter.ViewHolder>() {
-    var friends = listOf<Profile>()
+    var friends = listOf<Profile.Friend>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -26,14 +26,14 @@ class FriendAdapter : RecyclerView.Adapter<FriendAdapter.ViewHolder>() {
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(friend: Profile) {
+        fun bind(friend: Profile.Friend) {
             with(itemView) {
                 tv_person_name.text = friend.name
                 tv_person_id.text = friend.id
                 tv_person_email.text = friend.email
 
                 Glide.with(this)
-                    .load(friend.image)
+                    .load(context.getString(R.string.ui_avatar, friend.name))
                     .into(img_person)
             }
         }
