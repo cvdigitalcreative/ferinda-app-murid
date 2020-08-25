@@ -1,5 +1,6 @@
 package com.digitalcreative.appmurid.api
 
+import com.digitalcreative.appmurid.data.model.Agenda
 import com.digitalcreative.appmurid.data.model.Assignment
 import com.digitalcreative.appmurid.data.model.Student
 import com.digitalcreative.appmurid.data.response.BaseResponse
@@ -52,4 +53,7 @@ interface ApiService {
         @Body
         body: RequestBody
     ): BaseResponse<Nothing>
+
+    @GET("murid/agenda/")
+    suspend fun getAllAgenda(): BaseResponse<List<Agenda>>
 }

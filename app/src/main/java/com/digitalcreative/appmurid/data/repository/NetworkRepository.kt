@@ -3,6 +3,7 @@ package com.digitalcreative.appmurid.data.repository
 import android.util.Log
 import com.digitalcreative.appmurid.api.ApiService
 import com.digitalcreative.appmurid.data.Result
+import com.digitalcreative.appmurid.data.model.Agenda
 import com.digitalcreative.appmurid.data.model.Assignment
 import com.digitalcreative.appmurid.data.model.Student
 import com.digitalcreative.appmurid.utils.helper.Constants.CONNECTION_ERROR
@@ -30,10 +31,10 @@ class NetworkRepository @Inject constructor(private val service: ApiService) {
                 Result.ErrorRequest(response.message)
             }
         } catch (e: ConnectException) {
-            Log.e("NR-Login", e.localizedMessage!!)
+            Log.e("NetworkRequest", "Login -> ${e.localizedMessage}")
             Result.ErrorRequest(CONNECTION_ERROR)
         } catch (e: Exception) {
-            Log.e("NR-Login", e.localizedMessage!!)
+            Log.e("NetworkRequest", "Login -> ${e.localizedMessage}")
             Result.ErrorRequest(UNKNOWN_ERROR)
         }
     }
@@ -47,10 +48,10 @@ class NetworkRepository @Inject constructor(private val service: ApiService) {
                 Result.ErrorRequest(response.message)
             }
         } catch (e: ConnectException) {
-            Log.e("NR-GetAllAssignment", e.localizedMessage!!)
+            Log.e("NetworkRequest", "GetAllAssignment -> ${e.localizedMessage}")
             Result.ErrorRequest(CONNECTION_ERROR)
         } catch (e: Exception) {
-            Log.e("NR-GetAllAssignment", e.localizedMessage!!)
+            Log.e("NetworkRequest", "GetAllAssignment -> ${e.localizedMessage}")
             Result.ErrorRequest(UNKNOWN_ERROR)
         }
     }
@@ -68,10 +69,10 @@ class NetworkRepository @Inject constructor(private val service: ApiService) {
                 Result.ErrorRequest(response.message)
             }
         } catch (e: ConnectException) {
-            Log.e("NR-AssignmentQuestion", e.localizedMessage!!)
+            Log.e("NetworkRequest", "GetAssignmentQuestion -> ${e.localizedMessage}")
             Result.ErrorRequest(CONNECTION_ERROR)
         } catch (e: Exception) {
-            Log.e("NR-AssignmentQuestion", e.localizedMessage!!)
+            Log.e("NetworkRequest", "GetAssignmentQuestion -> ${e.localizedMessage}")
             Result.ErrorRequest(UNKNOWN_ERROR)
         }
     }
@@ -96,10 +97,27 @@ class NetworkRepository @Inject constructor(private val service: ApiService) {
                 Result.ErrorRequest(response.message)
             }
         } catch (e: ConnectException) {
-            Log.e("NR-SendAnswer", e.localizedMessage!!)
+            Log.e("NetworkRequest", "SendAssignmentAnswer -> ${e.localizedMessage}")
             Result.ErrorRequest(CONNECTION_ERROR)
         } catch (e: Exception) {
-            Log.e("NR-SendAnswer", e.localizedMessage!!)
+            Log.e("NetworkRequest", "SendAssignmentAnswer -> ${e.localizedMessage}")
+            Result.ErrorRequest(UNKNOWN_ERROR)
+        }
+    }
+
+    suspend fun getAllAgenda(): Result<List<Agenda>> {
+        return try {
+            val response = service.getAllAgenda()
+            if (response.status == STATUS_SUCCESS) {
+                Result.Success(response.data)
+            } else {
+                Result.ErrorRequest(response.message)
+            }
+        } catch (e: ConnectException) {
+            Log.e("NetworkRequest", "GetAllAgenda -> ${e.localizedMessage}")
+            Result.ErrorRequest(CONNECTION_ERROR)
+        } catch (e: Exception) {
+            Log.e("NetworkRequest", "GetAllAgenda -> ${e.localizedMessage}")
             Result.ErrorRequest(UNKNOWN_ERROR)
         }
     }
