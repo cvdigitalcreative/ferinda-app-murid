@@ -5,14 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.presentation.adapter.RaportAdapter
 import com.digitalcreative.appmurid.data.model.Raport
+import com.digitalcreative.appmurid.presentation.adapter.RaportAdapter
+import com.digitalcreative.appmurid.presentation.ui.home.report.ReportViewModel
+import com.digitalcreative.appmurid.utils.helper.loadingDialog
+import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_semester.*
 
-
+@AndroidEntryPoint
 class SemesterFragment : Fragment() {
+
+    private val viewModel by viewModels<ReportViewModel>()
+    private val loadingDialog by loadingDialog()
 
     companion object {
         const val TYPE_SEMESTER = "semester"
@@ -29,6 +37,15 @@ class SemesterFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val type = arguments?.getString(TYPE_SEMESTER)
+
+        if (type == SEMESTER_1) {
+            viewModel.getFirstSemester()
+        } else {
+            viewModel.getSecondSemester()
+        }
+        initObservers()
 
         val listRaport = listOf(
             Raport(
@@ -73,5 +90,32 @@ class SemesterFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
         }
+
+    }
+
+    private fun initObservers() {
+        viewModel.loading.observe(viewLifecycleOwner, this::showLoading)
+        viewModel.data.observe(viewLifecycleOwner, this::showResponse)
+        viewModel.errorMessage.observe(viewLifecycleOwner, this::showError)
+    }
+
+    private fun showLoading(isShow: Boolean) {
+        if (isShow) {
+            if (!loadingDialog.isAdded) {
+                loadingDialog.showDialog()
+            }
+        } else {
+            if (loadingDialog.isAdded) {
+                loadingDialog.closeDialog()
+            }
+        }
+    }
+
+    private fun showResponse(raport: Raport) {
+
+    }
+
+    private fun showError(message: String) {
+        Toasty.error(requireContext(), message, Toasty.LENGTH_LONG, true).show()
     }
 }

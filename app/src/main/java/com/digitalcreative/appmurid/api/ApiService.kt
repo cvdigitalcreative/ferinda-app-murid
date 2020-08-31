@@ -1,9 +1,6 @@
 package com.digitalcreative.appmurid.api
 
-import com.digitalcreative.appmurid.data.model.Agenda
-import com.digitalcreative.appmurid.data.model.Assignment
-import com.digitalcreative.appmurid.data.model.Profile
-import com.digitalcreative.appmurid.data.model.Student
+import com.digitalcreative.appmurid.data.model.*
 import com.digitalcreative.appmurid.data.response.BaseResponse
 import okhttp3.RequestBody
 import retrofit2.http.Body
@@ -63,4 +60,13 @@ interface ApiService {
         @Path("student_id")
         studentId: String
     ): BaseResponse<Profile>
+
+    @GET("murid/{student_id}/rapot/semester/{semester_id}")
+    suspend fun getRaport(
+        @Path("student_id")
+        studentId: String,
+
+        @Path("semester_id")
+        semesterId: String
+    ): BaseResponse<Raport>
 }

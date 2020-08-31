@@ -3,10 +3,7 @@ package com.digitalcreative.appmurid.data.repository
 import android.util.Log
 import com.digitalcreative.appmurid.api.ApiService
 import com.digitalcreative.appmurid.data.Result
-import com.digitalcreative.appmurid.data.model.Agenda
-import com.digitalcreative.appmurid.data.model.Assignment
-import com.digitalcreative.appmurid.data.model.Profile
-import com.digitalcreative.appmurid.data.model.Student
+import com.digitalcreative.appmurid.data.model.*
 import com.digitalcreative.appmurid.utils.helper.Constants.CONNECTION_ERROR
 import com.digitalcreative.appmurid.utils.helper.Constants.STATUS_SUCCESS
 import com.digitalcreative.appmurid.utils.helper.Constants.UNKNOWN_ERROR
@@ -136,6 +133,23 @@ class NetworkRepository @Inject constructor(private val service: ApiService) {
             Result.ErrorRequest(CONNECTION_ERROR)
         } catch (e: Exception) {
             Log.e("NetworkRequest", "GetDetailProfile -> ${e.localizedMessage}")
+            Result.ErrorRequest(UNKNOWN_ERROR)
+        }
+    }
+
+    suspend fun getRaport(studentId: String, semesterId: String): Result<Raport> {
+        return try {
+            val response = service.getRaport(studentId, semesterId)
+            if (response.status == STATUS_SUCCESS) {
+                Result.Success(response.data)
+            } else {
+                Result.ErrorRequest(response.message)
+            }
+        } catch (e: ConnectException) {
+            Log.e("NetworkRequest", "GetRaport -> ${e.localizedMessage}")
+            Result.ErrorRequest(CONNECTION_ERROR)
+        } catch (e: Exception) {
+            Log.e("NetworkRequest", "GetRaport -> ${e.localizedMessage}")
             Result.ErrorRequest(UNKNOWN_ERROR)
         }
     }
