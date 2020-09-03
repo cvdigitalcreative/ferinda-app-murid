@@ -39,7 +39,6 @@ class RaportAdapter : RecyclerView.Adapter<RaportAdapter.ViewHolder>() {
 
                 val raportItemAdapter = RaportItemAdapter()
                 raportItemAdapter.raportItems = raport.item
-
                 rv_raport_section.apply {
                     adapter = raportItemAdapter
                     layoutManager = LinearLayoutManager(context)
