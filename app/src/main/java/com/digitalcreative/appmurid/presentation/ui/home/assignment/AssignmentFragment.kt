@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -24,6 +26,10 @@ class AssignmentFragment : Fragment(), AssignmentAdapter.ClickListener {
     private val viewModel by viewModels<AssignmentViewModel>()
     private val loadingDialog by loadingDialog()
     private val assignmentAdapter = AssignmentAdapter()
+    private val assignmentDetailResults = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),
+        this::handleResult
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +57,13 @@ class AssignmentFragment : Fragment(), AssignmentAdapter.ClickListener {
         val intent = Intent(requireContext(), AssignmentDetailActivity::class.java).apply {
             putExtra(AssignmentDetailActivity.EXTRA_ASSIGNMENT, assignment)
         }
-        startActivity(intent)
+        assignmentDetailResults.launch(intent)
+    }
+
+    private fun handleResult(result: ActivityResult) {
+        if (result.resultCode == AssignmentDetailActivity.RESULT_SUCCESS) {
+            viewModel.getAllAssignment()
+        }
     }
 
     private fun initObservers() {

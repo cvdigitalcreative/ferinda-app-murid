@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.digitalcreative.appmurid.R
-import com.digitalcreative.appmurid.presentation.adapter.SectionAdapter
 import com.digitalcreative.appmurid.data.model.Assignment
+import com.digitalcreative.appmurid.presentation.adapter.SectionAdapter
 import com.digitalcreative.appmurid.presentation.ui.home.assignment.AssignmentViewModel
 import com.digitalcreative.appmurid.utils.helper.loadingDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +33,7 @@ class AssignmentDetailActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_ASSIGNMENT = "extra_assignment"
+        const val RESULT_SUCCESS = 1
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +62,11 @@ class AssignmentDetailActivity : AppCompatActivity() {
 
             viewModel.sendAssignmentAnswer(assignment.id, questions, answers)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return super.onSupportNavigateUp()
     }
 
     private fun initObservers() {
@@ -99,6 +105,8 @@ class AssignmentDetailActivity : AppCompatActivity() {
 
     private fun showSuccessMessage(message: String) {
         Toasty.success(this, message, Toasty.LENGTH_LONG, true).show()
+        setResult(RESULT_SUCCESS)
+        finish()
     }
 
     private fun showErrorMessage(message: String) {
