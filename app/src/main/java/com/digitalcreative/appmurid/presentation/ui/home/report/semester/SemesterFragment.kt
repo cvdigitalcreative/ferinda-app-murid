@@ -77,7 +77,7 @@ class SemesterFragment : Fragment() {
 
     private fun showResponse(raport: Raport) {
         reportAdapter.apply {
-            this.raports = List(10) { raport.detail[0] }
+            this.raports = raport.detail
             notifyDataSetChanged()
         }
 
