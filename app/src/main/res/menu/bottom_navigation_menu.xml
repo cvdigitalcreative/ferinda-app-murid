@@ -13,6 +13,10 @@
         android:icon="@drawable/ic_today"
         android:title="@string/agenda" />
     <item
+        android:id="@+id/menu_sekolah"
+        android:icon="@drawable/ic_home"
+        android:title="@string/sekolah" />
+    <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_account"
         android:title="@string/profile" />

@@ -12,6 +12,7 @@ import com.digitalcreative.appmurid.presentation.ui.home.agenda.AgendaFragment
 import com.digitalcreative.appmurid.presentation.ui.home.assignment.AssignmentFragment
 import com.digitalcreative.appmurid.presentation.ui.home.profile.ProfileFragment
 import com.digitalcreative.appmurid.presentation.ui.home.report.RaportFragment
+import com.digitalcreative.appmurid.presentation.ui.home.school.SchoolFragment
 import com.digitalcreative.appmurid.presentation.ui.login.LoginActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,6 +44,9 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.menu_agenda -> {
                     loadFragment(AgendaFragment())
+                }
+                R.id.menu_sekolah -> {
+                    loadFragment(SchoolFragment())
                 }
                 R.id.menu_profile -> {
                     loadFragment(ProfileFragment())

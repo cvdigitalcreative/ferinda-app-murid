@@ -27,4 +27,22 @@
     <string name="logout_message">Anda yakin ingin keluar dari aplikasi?</string>
     <string name="ya">Ya</string>
     <string name="tidak">Tidak</string>
+    <string name="sekolah">Sekolah</string>
+    <string name="profil_sekolah">Profil Sekolah</string>
+    <string name="deskripsi_profil_sekolah">
+        Taman Kanak-kanak Islam Terpadu Al-Hidayah atau disingkat menjadi TK Al-Hidayah yang sudah berdiri sejak tahun 2005 yang memiliki Izin Operasional Pendirian dengan No.420-1/344-SK/26.8/PM/2014 dan Izin Operasional Terakhir No.421.9/60/SK/26.8/PN/2018 dengan masa berlaku sampai 08 September 2022. TK Al-Hidayah merupakan sekolah islam terpadu dan menjadi salah satu taman kanak-kanak yang berada di kota Palembang Provinsi Sumatera Selatan dan beralokasi di Jln. Kertaraharja, Kelurahan Srimulya, Kecamatan Sematang Borang. Pada tahun ajaran 2019/2020 siswa di TK Al-Hidayah berjumlah 79 murid yang terdiri dari 43 perempuan dan 36 laki-laki. Sekolah ini diciptakan dengan tujuan untuk menambah wawasan ilmu, menjadikan anak mandiri, dan memberikan peluang pendidikan yang layak.
+Saat ini TK Al-Hidayah Palembang memberi perubahan terhadap pendidikan anak usia dini. Terhitung sejak tahun 2005 hingga tahun 2020 TK Al-Hidayah Palembang sudah mengeluarkan 15 angkatan pada setiap tahunnya.
+    </string>
+    <string name="visi">Visi</string>
+    <string name="deskripsi_visi">
+        Visi dari TK Al Hidayah adalah mewujudkan generasi yang bertawaqal, beriman, cerdas, serta memiliki akhlaq yang mulia.
+    </string>
+    <string name="misi">Misi</string>
+    <string-array name="deskripsi_misi">
+        <item>1. Memberikan pendidikan ilmu yang islami</item>
+        <item>2. Membekali keimanan serta kepercayaan kepada Allah SWT</item>
+        <item>3. Menumbuhkan sikap hormat dan patuh kepada sesama manusia</item>
+        <item>4. Mengembangkan rasa percaya diri, memiliki sikap kebersamaan, serta sikap perilaku yang baik</item>
+        <item>5. Menumbuhkan kreativitas pada anak supaya dapat mengembangkan diri dalam segala kegiatan pembelajaran yang aktif</item>
+    </string-array>
 </resources>
