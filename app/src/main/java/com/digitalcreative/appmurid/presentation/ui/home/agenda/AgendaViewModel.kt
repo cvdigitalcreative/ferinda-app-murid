@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.digitalcreative.appmurid.data.Result
 import com.digitalcreative.appmurid.data.model.Agenda
 import com.digitalcreative.appmurid.domain.usecases.agenda.GetAllAgenda
+import com.digitalcreative.appmurid.utils.helper.DateFormatter.parseDateTime
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,7 +34,11 @@ class AgendaViewModel @ViewModelInject constructor(private val getAgendaUseCase:
 
             when (val response = getAgendaUseCase()) {
                 is Result.Success -> {
-                    mAgenda.postValue((response.data))
+                    val listAgenda = response.data.map {
+                        it.copy(date = parseDateTime(it.date))
+                    }
+
+                    mAgenda.postValue(listAgenda)
                     mLoading.postValue(false)
                 }
 
